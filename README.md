@@ -9,22 +9,27 @@ Aplicação CRUD com interface gráfica desenvolvida em Python, utilizando Tkint
 ## Como Executar
 
 1. Certifique-se de ter o **Python 3** instalado na sua máquina.
-2. Clone o repositório com o comando:
+2. Crie uma pasta e inicialize o git com o comando:
+
+    ```bash
+    git init
+    ```
+3. Clone o repositório com o comando:
 
    ```bash
-   git clone <URL-do-repositório>
+   git clone https://github.com/caue22/BookManager.git
    ```
-3. Acesse a pasta do projeto:
+4. Acesse a pasta do projeto:
 
    ```bash
-   cd <nome-da-pasta>
+   cd BookManager
    ```
-4. Execute a aplicação com o comando:
+5. Execute a aplicação com o comando:
 
    ```bash
    python app.py
    ```
-5. A interface gráfica será aberta em uma nova janela com o menu principal.
+6. A interface gráfica será aberta em uma nova janela com o menu principal.
 
 ---
 
