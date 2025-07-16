@@ -45,5 +45,31 @@ def listar_livros():
     else:
         print("📭 Nenhum livro cadastrado.")
     print()
+
+def atualizar_livro():
+    print("\n=== Atualizar Livro ===")
+    try:
+        id_livro = int(input("Digite o ID do livro a ser atualizado: "))
+        cursor.execute('SELECT * FROM livros WHERE id = ?', (id_livro,))
+        if cursor.fetchone() is None:
+            print("⚠️ Livro não encontrado.\n")
+            return
+
+        print("Campos disponíveis: titulo, autor, ano_publicacao, genero, quantidade_estoque")
+        campo = input("Qual campo deseja atualizar? ").strip()
+        if campo not in ['titulo', 'autor', 'ano_publicacao', 'genero', 'quantidade_estoque']:
+            print("⚠️ Campo inválido.\n")
+            return
+
+        novo_valor = input(f"Digite o novo valor para {campo}: ").strip()
+        if campo in ['ano_publicacao', 'quantidade_estoque']:
+            novo_valor = int(novo_valor)
+
+        cursor.execute(f'UPDATE livros SET {campo} = ? WHERE id = ?', (novo_valor, id_livro))
+        conn.commit()
+        print("✅ Livro atualizado com sucesso!\n")
+    except ValueError:
+        print("⚠️ Entrada inválida. Digite números onde for necessário.\n")
+
         
 conn.close()
