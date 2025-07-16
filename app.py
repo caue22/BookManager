@@ -2,7 +2,7 @@ import sqlite3
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 
-# Conexão com o banco
+
 conn = sqlite3.connect('database.db')
 cursor = conn.cursor()
 
@@ -123,7 +123,7 @@ def excluir_livro():
             messagebox.showinfo("Sucesso", "🗑️ Livro excluído com sucesso!")
 
 
-# ======== Interface Principal ========
+
 root = tk.Tk()
 root.title("📚 Sistema de Cadastro de Livros (CRUD)")
 root.geometry("400x300")
