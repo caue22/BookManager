@@ -32,5 +32,18 @@ def cadastrar_livro():
         print("✅ Livro cadastrado com sucesso!\n")
     else:
         print("⚠️ Preencha todos os campos corretamente.\n")
+
+def listar_livros():
+    print("\n=== Lista de Livros ===")
+    cursor.execute('SELECT * FROM livros')
+    livros = cursor.fetchall()
+
+    if livros:
+        for livro in livros:
+            print(f"ID: {livro[0]} | Título: {livro[1]} | Autor: {livro[2]} | "
+                  f"Ano: {livro[3]} | Gênero: {livro[4]} | Estoque: {livro[5]}")
+    else:
+        print("📭 Nenhum livro cadastrado.")
+    print()
         
 conn.close()
