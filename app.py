@@ -71,5 +71,24 @@ def atualizar_livro():
     except ValueError:
         print("⚠️ Entrada inválida. Digite números onde for necessário.\n")
 
-        
+def excluir_livro():
+    print("\n=== Excluir Livro ===")
+    try:
+        id_livro = int(input("Digite o ID do livro a ser excluído: "))
+        cursor.execute('SELECT * FROM livros WHERE id = ?', (id_livro,))
+        if cursor.fetchone() is None:
+            print("⚠️ Livro não encontrado.\n")
+            return
+
+        confirmacao = input("Tem certeza que deseja excluir? (s/n): ").strip().lower()
+        if confirmacao == 's':
+            cursor.execute('DELETE FROM livros WHERE id = ?', (id_livro,))
+            conn.commit()
+            print("🗑️ Livro excluído com sucesso!\n")
+        else:
+            print("❌ Exclusão cancelada.\n")
+    except ValueError:
+        print("⚠️ Entrada inválida. Digite números onde for necessário.\n")
+
+
 conn.close()
