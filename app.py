@@ -1,4 +1,5 @@
 import sqlite3
+import datetime
 import tkinter as tk
 from tkinter import messagebox, simpledialog
 
@@ -27,11 +28,17 @@ def cadastrar_livro():
         genero = genero_entry.get().strip()
         quantidade = quantidade_entry.get().strip()
 
+        ano_atual = datetime.datetime.now().year
+
         if titulo and autor and ano.isdigit() and quantidade.isdigit():
+            ano_int = int(ano)
+            if ano_int > ano_atual:
+                messagebox.showerror("Erro", f"⚠️ Ano de publicação não pode ser maior que {ano_atual}.")
+                return
             cursor.execute('''
             INSERT INTO livros (titulo, autor, ano_publicacao, genero, quantidade_estoque)
             VALUES (?, ?, ?, ?, ?)
-            ''', (titulo, autor, int(ano), genero, int(quantidade)))
+            ''', (titulo, autor, ano_int, genero, int(quantidade)))
             conn.commit()
             messagebox.showinfo("Sucesso", "✅ Livro cadastrado com sucesso!")
             janela_cadastro.destroy()
